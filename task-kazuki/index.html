@@ -13,7 +13,35 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
-
+	
+		<script language=javascript> 
+		function proc_onload() 
+		{ 
+		var i=0,passwd; 
+		while(i++<1) 
+		{ 
+		passwd=window.prompt("請輸入密碼(第" + (i) +"次):",""); 
+		if(passwd) //避免使用者點選取消按鈕，passed 為 null 視同密碼錯誤。 
+		{ 
+		//檢查密碼是否正確。 
+		if(passwd=="wade") 
+		{ 
+		//將隱藏的 div 區塊顯示出來。 
+		self.document.all("security").style.display="inline"; return; 
+		} 
+		} 
+		//提示密碼錯誤。 
+		self.alert("密碼錯誤"); 
+		} 
+		//密碼2次錯誤，將網頁引導至密碼錯誤網頁。 
+		self.location.assign("https://www.google.com"); 
+		} 
+		</script> 
+		<!--載入後執行密碼功能--> 
+		<body onload="proc_onload();" oncontextmenu="window.event.returnValue=false;alert('提醒您! 本處成績單嚴禁外流!')"> 
+		<!-- div 區塊載入後先讓它隱藏，待密碼正確後再顯示--> 
+		<div id="security" style="display:none">
+		
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
@@ -115,6 +143,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+		
+		</div>
 	</body>
 </html>
